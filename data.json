@@ -1,0 +1,72 @@
+{
+    "Lotr": {
+        "name": "Lotr",
+        "rating": 9.9,
+        "release": 2000
+    },
+    "Star Wars": {
+        "name": "Star Wars",
+        "rating": 8.9,
+        "release": 1977
+    },
+    "The Peins": {
+        "name": "The Peins",
+        "rating": 6.4,
+        "release": 1902
+    },
+    "Ultra Socken": {
+        "name": "Ultra Socken",
+        "rating": 3.1,
+        "release": 1940
+    },
+    "Star Wars: Erwachen der Macht": {
+        "name": "Star Wars: Erwachen der Macht",
+        "rating": 1.7,
+        "release": 2013
+    },
+    "Star Trek 2": {
+        "name": "Star Trek 2",
+        "rating": 7.0,
+        "release": 1985
+    },
+    "Kingdom": {
+        "name": "Kingdom",
+        "rating": "8.0",
+        "release": "2010"
+    },
+    "Fleisch": {
+        "name": "Fleisch",
+        "rating": "5.1",
+        "release": "1980"
+    },
+    "Ranzig": {
+        "name": "Ranzig",
+        "rating": "3.6",
+        "release": "1750"
+    },
+    "Fear": {
+        "name": "Fear",
+        "rating": "6.7",
+        "release": "1970"
+    },
+    "Kr\u00fcger": {
+        "name": "Kr\u00fcger",
+        "rating": 5.1,
+        "release": "2002"
+    },
+    "Krumm": {
+        "name": "Krumm",
+        "rating": 6.3,
+        "release": "2000"
+    },
+    "Ratte": {
+        "name": "Ratte",
+        "rating": 5.1,
+        "release": "1950"
+    },
+    "Crackwars": {
+        "name": "Crackwars",
+        "rating": 7.8,
+        "release": "1987"
+    }
+}
