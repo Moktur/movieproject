@@ -1,5 +1,6 @@
 import statistics
 import random
+import traceback
 # import matplotlib.pyplot as plt
 import os
 import movie_storage_sql as storage
@@ -33,7 +34,7 @@ def list_all_movies():
 
 def add_movie():
     """Adding a Movie to the Database"""
-    list_of_movies = list(storage.get_movies())
+    list_of_movies = list(storage.list_movies())
     movierating = 0.0
     releaseyear = 0000
     in_database = False
@@ -86,6 +87,7 @@ def add_movie():
                 print(
                     "Wrong date format. "
                     "Please enter the year i.e. 2000")
+
 
 
 def delete_movie():
@@ -308,6 +310,7 @@ def main():
             #     create_rating_histogram()
         except Exception:
             print("Please enter a valid number (0-9)")
+            traceback.print_exc()
             continue
 
 
