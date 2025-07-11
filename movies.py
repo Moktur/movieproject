@@ -123,7 +123,7 @@ def update_movie():
 
 def stats():
     """Printing the average, median, best and worst movies"""
-    list_of_movies = create_list_of_movies(storage.get_movies())
+    list_of_movies = create_list_of_movies(storage.list_movies())
     print("The average is: ", average(list_of_movies))
     median(list_of_movies)
     best_and_worst_movie(list_of_movies)
@@ -161,9 +161,9 @@ def best_and_worst_movie(list_of_movies):
 
     # print all movies with the same rating
     print("The best movies are: ")
-    for movie in list_of_movies:
-        if movie["rating"] == highest_rate:
-            print(f'{movie["name"]}:{movie["rating"]}')
+    for movies in list_of_movies:
+        if movies["rating"] == highest_rate:
+            print(f'{movies["name"]}:{movies["rating"]}')
 
     print("The worst movies are: ")
     for movie in list_of_movies:
@@ -178,23 +178,23 @@ def create_list_of_movies(dict_of_dicts):
     returns a List with Dictionaries
     """
     list_of_movies = list()
-    for movie, moviedetails in dict_of_dicts.items():
+    for title, data in dict_of_dicts.items():
         moviedict = {
-                    "name": moviedetails["name"],
-                    "rating": float(moviedetails["rating"])
+                    "name": title,
+                    "rating": float(data["rating"])
                     }
         list_of_movies.append(moviedict)
     return list_of_movies
 
 
 def random_movie():
-    database = storage.get_movies()
+    database = storage.list_movies()
     if bool(database):
-        random_movie = random.choice(list(database.items()))
+        random_movie, random_movie_data = random.choice(list(database.items()))
         print(
-            f'Here is your movie: {random_movie[1]["name"]} \n'
-            f'With a rating of: {random_movie[1]["rating"]} \n'
-            f'Which was released: {random_movie[1]["release"]}')
+            f'Here is your movie: {random_movie} \n'
+            f'With a rating of: {random_movie_data["rating"]} \n'
+            f'Which was released: {random_movie_data["year"]}')
 
 
 def search_movie():
