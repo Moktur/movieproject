@@ -199,16 +199,16 @@ def random_movie():
 
 def search_movie():
     found = False
-    database = storage.get_movies()
+    database = storage.list_movies()
     search = input("Enter Part of the Movie name: ")
     print("Following movies match with your letters: ")
     for movie, moviedetails in database.items():
         if search.lower() in movie.lower():
             found = True
             print(
-                f'{moviedetails["name"]}, '
+                f'{movie}, '
                 f'{moviedetails["rating"]}, '
-                f'{moviedetails["release"]}')
+                f'{moviedetails["year"]}')
     if not found:
         print("No match with your letters.")
 
