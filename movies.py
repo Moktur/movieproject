@@ -217,7 +217,7 @@ def sort_by_rating():
     """
     Printing the movies descending in relation to their rating
     """
-    list_of_movies = create_list_of_movies(storage.get_movies())
+    list_of_movies = create_list_of_movies(storage.list_movies())
     new_sorted_list = list_of_movies[:]
     highest_value = 0
     moviename = ""
