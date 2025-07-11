@@ -5,6 +5,7 @@ import traceback
 import os
 import movie_storage_sql as storage
 
+API_KEY = os.getenv('API_KEY')
 
 def print_menu(menu_choices):
     """Printing the menu
