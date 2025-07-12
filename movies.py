@@ -4,8 +4,8 @@ import traceback
 # import matplotlib.pyplot as plt
 import os
 import movie_storage_sql as storage
-
-API_KEY = os.getenv('API_KEY')
+import data_fetcher
+import data_formatter
 
 def print_menu(menu_choices):
     """Printing the menu
@@ -54,40 +54,19 @@ def add_movie():
     if not in_database:
         validation = False
         while not validation:
-            try:
-                movierating = input(
-                    "Add the rating of the movie. Format: X.X ")
-                if len(movierating) > 3 or len(movierating) < 3 or (
-                        movierating[1] != "."):
-                    raise ValueError
-                else:
-                    movierating = float(movierating)
-                    validation = True
-            except ValueError:
-                print("Please enter the right format for the rating. I.e. 5.4")
-        validation = False
-        while not validation:
-            try:
-                releaseyear = input(
-                    "Add the releaseyear of the movie. "
-                    "For example: 2002 ")
-                if len(releaseyear) > 4 or len(releaseyear) < 4:
-                    raise TypeError
-                else:
-                    validation = True
-                    storage.add_movie(
-                        moviename,
-                        rating=movierating,
-                        year=releaseyear)
-                    print(
-                        f"Movie {moviename} with a "
-                        f"{movierating} rating released "
-                        f"{releaseyear} was added to the database")
-                    validation = True
-            except TypeError:
-                print(
-                    "Wrong date format. "
-                    "Please enter the year i.e. 2000")
+            movie_information = data_formatter(data_fetcher(moviename))
+            storage.add_movie(
+                movie_information["title"],
+                movie_information["year"],
+                movie_information["rating"],
+                movie_information["url"]
+            )
+            print(
+                f"Movie {moviename} with a "
+                f"{movierating} rating released "
+                f"{releaseyear} was added to the database")
+            validation = True 
+            
 
 
 
