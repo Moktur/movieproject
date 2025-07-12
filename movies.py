@@ -54,7 +54,8 @@ def add_movie():
     if not in_database:
         validation = False
         while not validation:
-            movie_information = data_formatter(data_fetcher(moviename))
+            movie_information = data_formatter.format_data(
+                                    data_fetcher.fetch_data(moviename))
             storage.add_movie(
                 movie_information["title"],
                 movie_information["year"],
@@ -62,9 +63,9 @@ def add_movie():
                 movie_information["url"]
             )
             print(
-                f"Movie {moviename} with a "
-                f"{movierating} rating released "
-                f"{releaseyear} was added to the database")
+                f'Movie {moviename} with a '
+                f'{movie_information["rating"]} rating released '
+                f'{movie_information["year"]} was added to the database')
             validation = True 
             
 
@@ -288,8 +289,8 @@ def main():
                 sort_by_rating()
             # if point == 9:
             #     create_rating_histogram()
-        except Exception:
-            print("Please enter a valid number (0-9)")
+        except Exception as e:
+            print(f"{e} Please enter a valid number (0-9)")
             traceback.print_exc()
             continue
 
