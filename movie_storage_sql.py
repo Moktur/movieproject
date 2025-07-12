@@ -13,7 +13,9 @@ with engine.connect() as connection:
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           title TEXT UNIQUE NOT NULL,
           year INTEGER NOT NULL,
-          rating REAL NOT NULL
+          rating REAL NOT NULL,
+          url VARCHAR(100)
+                          
       )
   """))
   connection.commit()
@@ -26,12 +28,12 @@ def list_movies():
     movies = result.fetchall()
     return {row[0]: {"year": row[1], "rating": row[2]} for row in movies}
 
-def add_movie(title, year, rating):
+def add_movie(title, year, rating, url):
   """Add a new movie to the database."""
   with engine.connect() as connection:
     try:
-      connection.execute(text("INSERT INTO movies (title, year, rating) VALUES (:title, :year, :rating)"), 
-        {"title": title, "year": year, "rating": rating})
+      connection.execute(text("INSERT INTO movies (title, year, rating, url) VALUES (:title, :year, :rating, :url)"), 
+        {"title": title, "year": year, "rating": rating, "url": url})
       connection.commit()
       print(f"Movie '{title}' added successfully.")
     except Exception as e:
