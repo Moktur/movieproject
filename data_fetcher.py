@@ -17,4 +17,3 @@ def fetch_data(movie_search):
   else:
     raise Exception(f"API Error: {response.status_code} - {response.text}")
   
-print(fetch_data("batman"))

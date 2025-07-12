@@ -9,5 +9,3 @@ def format_data(movie_information):
   }
   return data_for_use
 
-
-print(format_data(data_fetcher.fetch_data("Batman")))
