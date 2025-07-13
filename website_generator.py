@@ -4,14 +4,18 @@ TITLE = "My Movie App"
 
 def write_html():
     """Writes the final HTML file"""
-    with open("./static/index_template.html", "r", encoding="utf-8") as obj:
-        template = obj.read()
+    try:
+        with open("./static/index_template.html", "r", encoding="utf-8") as obj:
+            template = obj.read()
 
-    html_content = template.replace("__TEMPLATE_TITLE__", TITLE)
-    html_content = html_content.replace("__TEMPLATE_MOVIE_GRID__", movie_data_to_html())
+        html_content = template.replace("__TEMPLATE_TITLE__", TITLE)
+        html_content = html_content.replace("__TEMPLATE_MOVIE_GRID__", movie_data_to_html())
 
-    with open("./static/my_movie_app.html", "w", encoding="utf-8") as obj:
-        obj.write(html_content)
+        with open("./static/my_movie_app.html", "w", encoding="utf-8") as obj:
+            obj.write(html_content)
+        print(f"Website successfully created")
+    except Exception as e:
+        print(f"{e} \n Couldn't create html file")
 
 def movie_data_to_html():
     movies = storage.list_movies()
@@ -32,7 +36,3 @@ def serialize_movies(title, moviedetails):
       f'</div>'
       f'</li>'
     )
-
-
-
-write_html()
