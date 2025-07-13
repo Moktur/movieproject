@@ -6,6 +6,7 @@ import os
 import movie_storage_sql as storage
 import data_fetcher
 import data_formatter
+from website_generator import write_html
 
 def print_menu(menu_choices):
     """Printing the menu
@@ -261,7 +262,7 @@ def main():
     menu_choices = ["Exit", "List movies", "Add movie", "Delete movie",
                     "Update movie", "Stats", "Random movie",
                     "Search movie", "Movies sorted by rating",
-                    "Create Rating Histogram"]
+                    "Generate Website"]
     boolisch = True
     while boolisch:
         try:
@@ -287,6 +288,8 @@ def main():
                 search_movie()
             if point == 8:
                 sort_by_rating()
+            if point == 9:
+                write_html()
             # if point == 9:
             #     create_rating_histogram()
         except Exception as e:
