@@ -1,12 +1,10 @@
 import statistics
 import random
-import traceback
-# import matplotlib.pyplot as plt
-import os
-import movie_storage_sql as storage
-import data_fetcher
-import data_formatter
+from data import *
 from website_generator import write_html
+from moviestorage import movie_storage_sql as storage
+
+
 
 def print_menu(menu_choices):
     """Printing the menu
@@ -20,7 +18,6 @@ def print_menu(menu_choices):
 def list_all_movies():
     """
     Printing the list of all movies
-    returns: 
     """
     all_movies = storage.list_movies()
     if all_movies:
@@ -69,8 +66,6 @@ def add_movie():
                 f'{movie_information["year"]} was added to the database')
             validation = True 
             
-
-
 
 def delete_movie():
     """Deletes a movie from the database"""
@@ -170,6 +165,7 @@ def create_list_of_movies(dict_of_dicts):
 
 
 def random_movie():
+    """Picks a random movie from the database"""
     database = storage.list_movies()
     if bool(database):
         random_movie, random_movie_data = random.choice(list(database.items()))
@@ -180,6 +176,10 @@ def random_movie():
 
 
 def search_movie():
+    """
+    Searchs the database if the movie is already there,
+    prints the result
+    """
     found = False
     database = storage.list_movies()
     search = input("Enter Part of the Movie name: ")
@@ -216,36 +216,6 @@ def sort_by_rating():
         highest_value = 0
 
 
-# def create_rating_histogram():
-#     # Bewertungen in Liste packen
-#     movie_database = storage.get_movies()
-#     print(movie_database)
-#     ratings = list()
-#     for movie, moviedetails in movie_database.items():
-#         ratings.append(moviedetails["rating"])
-#     print(ratings)
-#     # Histogramm erstellen
-#     # `bins` definiert die Anzahl der Balken
-#     plt.hist(ratings, bins=5, edgecolor="black", color='peachpuff')
-#     plt.xlabel("Rating (0-10)")
-#     plt.ylabel("Numbers of Movies")
-#     plt.title("Ratings of Movies")
-
-#     print(
-#         "Where do you want to save this picture? "
-#         "(for example: /Users/Name/Desktop/filme.png)")
-#     save_path = input("Enter path: ").strip()
-#     if save_path:
-#         try:
-#             plt.savefig(save_path)
-#             print(f"Picture was saved: {os.path.abspath(save_path)}")
-#         except Exception as e:
-#             print(f"Error during saving: {e}")
-#     else:
-#         print("No path entered.")
-#     plt.show()
-
-
 def check_ifNOT_contains(item, movie_database):
     """Helpermethod to check if movie is in database"""
     if item not in movie_database:
@@ -256,8 +226,7 @@ def check_ifNOT_contains(item, movie_database):
 def exit_cli():
     print("Bye!")
 
-
-def main():
+def show_menu():
     print("____ My Movies Database____")
     menu_choices = ["Exit", "List movies", "Add movie", "Delete movie",
                     "Update movie", "Stats", "Random movie",
@@ -290,13 +259,11 @@ def main():
                 sort_by_rating()
             if point == 9:
                 write_html()
-            # if point == 9:
-            #     create_rating_histogram()
         except Exception as e:
             print(f"{e} Please enter a valid number (0-9)")
-            traceback.print_exc()
             continue
 
 
+
 if __name__ == "__main__":
-    main()
+    show_menu()

@@ -1,4 +1,4 @@
-import movie_storage_sql as storage
+from moviestorage import movie_storage_sql as storage
 
 TITLE = "My Movie App"
 
@@ -11,7 +11,7 @@ def write_html():
         html_content = template.replace("__TEMPLATE_TITLE__", TITLE)
         html_content = html_content.replace("__TEMPLATE_MOVIE_GRID__", movie_data_to_html())
 
-        with open("./static/my_movie_app.html", "w", encoding="utf-8") as obj:
+        with open("./static/index.html", "w", encoding="utf-8") as obj:
             obj.write(html_content)
         print(f"Website successfully created")
     except Exception as e:
