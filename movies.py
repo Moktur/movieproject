@@ -1,9 +1,9 @@
 import statistics
 import random
-from data import *
+from data import data_fetcher
+from data import data_formatter
 from website_generator import write_html
 from moviestorage import movie_storage_sql as storage
-
 
 
 def print_menu(menu_choices):
@@ -21,21 +21,18 @@ def list_all_movies():
     """
     all_movies = storage.list_movies()
     if all_movies:
-        print(all_movies.items())
         for title, data in all_movies.items():
             print(f"Title: {title}")
             print(f"Rating: {data['rating']}")
             print(f"Releaseyear: {data['year']}")
             print("- - - - - - - - - - - - - - -")
     else:
-        print(f"Moviedatenbank leer")
+        print("Moviedatenbank empty")
 
 
 def add_movie():
     """Adding a Movie to the Database"""
     list_of_movies = list(storage.list_movies())
-    movierating = 0.0
-    releaseyear = 0000
     in_database = False
     validation = False
     moviename = ""
@@ -150,7 +147,7 @@ def best_and_worst_movie(list_of_movies):
 
 def create_list_of_movies(dict_of_dicts):
     """
-    Helper Method to create a compatible 
+    Helper Method to create a compatible
     data structure from previous code
     returns a List with Dictionaries
     """
@@ -226,6 +223,7 @@ def check_ifNOT_contains(item, movie_database):
 def exit_cli():
     print("Bye!")
 
+
 def show_menu():
     print("____ My Movies Database____")
     menu_choices = ["Exit", "List movies", "Add movie", "Delete movie",
@@ -262,7 +260,6 @@ def show_menu():
         except Exception as e:
             print(f"{e} Please enter a valid number (0-9)")
             continue
-
 
 
 if __name__ == "__main__":

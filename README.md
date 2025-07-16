@@ -32,3 +32,7 @@ API_KEY=your_api_key_here
 ```
 
 4. For a fresh start delete movies.db otherwise you can the programm out with the already created db.
+
+
+## Where do I find the website?
+ You can find the Website as index.html in the folder static.
