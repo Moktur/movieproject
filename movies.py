@@ -83,15 +83,19 @@ def update_movie():
     while not (validation):
         try:
             new_rating = input("Enter a new rating: ")
-            if len(new_rating) < 3 or (
-                len(new_rating) > 3) or (
-                    new_rating[1] != "."):
-                raise ValueError
-            else:
-                validation = True
+            if len(new_rating) == 1 and \
+                new_rating.isdigit():
                 storage.update_movie(movie_to_update, float(new_rating))
+                validation = True
+                break
+            if len(new_rating) == 3 and new_rating[1] == ".":
+                storage.update_movie(movie_to_update, float(new_rating))
+                validation = True
+                break
+            raise ValueError("Rating must be X or X.X (e.g., 7 or 4.9)")
         except ValueError:
-            print("The rating must be written in the format X.X")
+            print("The rating must be written in the format" \
+            " X.X or X (e.g., 4 or 3.2)")
             print("Please try again")
 
 
