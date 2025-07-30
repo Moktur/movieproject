@@ -28,7 +28,7 @@ pip install -r requirements.txt
 
 3. Create `.env` file with your API key:
 ```
-API_KEY=your_api_key_here
+API_KEY='&apikey=your_api_key_here'
 ```
 
 4. For a fresh start delete movies.db otherwise you can the programm out with the already created db.
