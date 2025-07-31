@@ -49,13 +49,12 @@ def add_movie():
     if not in_database:
         validation = False
         while not validation:
-            # If Movie can't be found and data_fetchers receives None
-            try:
-                movie_information = data_formatter.format_data(
-                                        data_fetcher.fetch_data(moviename))
-            except Exception:
+            fetched_data = data_fetcher.fetch_data(moviename)
+            if fetched_data is None:
                 print("Please write a different Moviename")
                 break
+            else:
+                movie_information = data_formatter.format_data(fetched_data)
             if movie_information["rating"] == "N/A":
                 movie_information["rating"] = 5.0
                 print(f"Movie {moviename} has no rating from omdb. \n"
