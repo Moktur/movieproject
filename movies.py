@@ -49,8 +49,19 @@ def add_movie():
     if not in_database:
         validation = False
         while not validation:
-            movie_information = data_formatter.format_data(
-                                    data_fetcher.fetch_data(moviename))
+            # If Movie can't be found and data_fetchers receives None
+            try:
+                movie_information = data_formatter.format_data(
+                                        data_fetcher.fetch_data(moviename))
+            except Exception:
+                print("Please write a different Moviename")
+                break
+            if movie_information["rating"] == "N/A":
+                movie_information["rating"] = 5.0
+                print(f"Movie {moviename} has no rating from omdb. \n"
+                      "Default rating is 5.0.\n"
+                      "If you want to change the rating, choose "
+                      "<update> from the menu")
             storage.add_movie(
                 movie_information["title"],
                 movie_information["year"],
@@ -134,9 +145,13 @@ def best_and_worst_movie(list_of_movies):
         print("No movies to compare!")
         return
         # check the highest rate and the lowest of the movie
-    highest_rate = max(m["rating"] for m in list_of_movies)
-    lowest_rate = min(m["rating"] for m in list_of_movies)
-
+    try:
+        highest_rate = max(m["rating"] for m in list_of_movies)
+        lowest_rate = min(m["rating"] for m in list_of_movies)
+    except Exception:
+        print("At least one Movie has no rating, \
+              please add Rating for precise calculation")
+        
     # print all movies with the same rating
     print("The best movies are: ")
     for movies in list_of_movies:
